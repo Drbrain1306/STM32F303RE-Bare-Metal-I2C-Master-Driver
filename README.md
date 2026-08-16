@@ -1,3 +1,6 @@
+## Repo Description
+A register-level bare-metal I2C master driver implemented on the STM32F303RE (ARM Cortex-M4) communicating with an Arduino Uno (ATmega328P) slave receiver.
+
 ## Hardware Setup & Pinout
 | Signal  |  STM32F303RE Pin | Arduino Uno Pin | Description |
 
