@@ -1,0 +1,30 @@
+#include <Wire.h>
+
+#define I2C_SLAVE_ADR 0x55 // 7-bit address to use for the i2c communication
+#define SDA_PIN 21
+#define SCL_PIN 22
+
+void receiveEvent(int howMany) {
+  Serial.print("Received from STM32: ");
+  while (Wire.available()) {
+    char c = Wire.read();
+    Serial.print(c);
+  } 
+  Serial.println();
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  // Initializing the Arduino as a slave at address 0x55
+  Wire.begin(I2C_SLAVE_ADR);
+
+  // Register the receive handler
+  Wire.onReceive(receiveEvent);
+
+  Serial.println("ESP32 I2C slave is active. Waiting for STM32 master...");
+}
+
+void loop() {
+  delay(100);
+}
